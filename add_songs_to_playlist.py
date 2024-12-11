@@ -2,8 +2,8 @@ import os
 from googleapiclient.discovery import build
 
 # Get API key and playlist ID from environment variables
-API_KEY = os.environ["AIzaSyDJ-Otd9FrQmaA6BqHh-lio8XtwWNt46fQ"]
-PLAYLIST_ID = os.environ["PLHdjYV9dT0NwUO7jU4JWTmJKA-YxeuUim"]
+API_KEY = os.environ["API_KEY"]
+PLAYLIST_ID = os.environ["PLAYLIST_ID"]
 
 # Initialize the YouTube API
 youtube = build("youtube", "v3", developerKey=API_KEY)
