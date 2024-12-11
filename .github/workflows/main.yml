@@ -16,7 +16,9 @@ jobs:
         python-version: '3.x'
 
     - name: Install dependencies
-      run: pip install google-api-python-client
+      run: |
+        pip install google-api-python-client
+        pip install google-auth-oauthlib
 
     - name: Recreate client_secret.json
       run: |
@@ -24,6 +26,5 @@ jobs:
 
     - name: Run script
       env:
-        API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         PLAYLIST_ID: ${{ secrets.PLAYLIST_ID }}
       run: python add_songs_to_playlist.py
