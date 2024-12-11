@@ -1,10 +1,9 @@
+import os
 from googleapiclient.discovery import build
 
-# Your YouTube API Key
-API_KEY = "AIzaSyDJ-Otd9FrQmaA6BqHh-lio8XtwWNt46fQ"
-
-# Playlist ID of your "Curate" playlist (get it from the playlist URL)
-PLAYLIST_ID = "PLHdjYV9dT0NwUO7jU4JWTmJKA-YxeuUim"
+# Get API key and playlist ID from environment variables
+API_KEY = os.environ["AIzaSyDJ-Otd9FrQmaA6BqHh-lio8XtwWNt46fQ"]
+PLAYLIST_ID = os.environ["PLHdjYV9dT0NwUO7jU4JWTmJKA-YxeuUim"]
 
 # Initialize the YouTube API
 youtube = build("youtube", "v3", developerKey=API_KEY)
@@ -39,10 +38,11 @@ def add_to_playlist(video_id):
     response = request.execute()
     return response
 
-# Read songs from the text file and process them
+# Read songs from the songs.txt file in the repository
 with open("songs.txt", "r") as file:
     songs = file.readlines()
 
+# Process each song
 for song in songs:
     song = song.strip()
     video_id = search_youtube(song)
