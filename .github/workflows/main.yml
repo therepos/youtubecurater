@@ -18,6 +18,10 @@ jobs:
     - name: Install dependencies
       run: pip install google-api-python-client
 
+    - name: Recreate client_secret.json
+      run: |
+        echo "${{ secrets.CLIENT_SECRET_BASE64 }}" | base64 -d > client_secret.json
+
     - name: Run script
       env:
         API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
